@@ -42,5 +42,5 @@ or git submodule update --init
 ### remove - remove a submodule from your project
 git submodule deinit submodulename    
 git rm submodulename
-# or, if you want to leave it in your working tree
+or, if you want to leave it in your working tree
 git rm --cached submodulename
