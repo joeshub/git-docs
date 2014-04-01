@@ -38,21 +38,40 @@ git stash drop stash@{1}
 ```
 
 ### submodules
-#### add - create submodules in your project
+#### add - create a submodule in your project from a master branch
 ```shell
-git submodule add git@hostname:project.git path/to/where/it/should/go
+git submodule add -b master git@hostname:project.git path/to/where/it/should/go
 git submodule init
 git submodule update
 git add .
 git commit -a -m "message"
 git push --recurse-submodules=on-demand
 ```
+this will create a .gitmodules file in your project that looks like this:
+```config
+[submodule "path/to/where/it/should/go"]
+	path = path/to/where/it/should/go
+	url = git@hostname:project.git
+	branch = master
+```
 
-#### update - pull down submodules in a project
+#### update - pull down submodules in a cloned project
 ```shell
-git submodule init
-git submodule update
-or git submodule update --init
+git submodule update --init
+```
+
+#### update - get updates to changes in submodules from branch used in -b
+```shell
+git submodule update --remote
+```
+to avoid fetching files use:
+```shell
+git submodule update --remote --no-fetch 
+```
+
+#### status - find changes in submodules, + shows additions
+```shell
+git submodule status
 ```
 
 #### remove - remove a submodule from your project
